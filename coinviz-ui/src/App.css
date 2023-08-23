@@ -1,0 +1,164 @@
+.App {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-family: "Roboto Mono", sans-serif;
+  align-items: flex-start;
+  width: 100%;
+  margin: 14px;
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+}
+
+.dropdowns {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.num_exchanges {
+  display: flex;
+  flex-direction: row;
+  width: 20;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 800px) {
+  .dropdowns {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.dropdown_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+}
+
+.dropdown {
+  width: 250px;
+  font-family: "Roboto Mono";
+  font-size: 14px;
+}
+
+.dropdown_label {
+  font-family: "Roboto Mono";
+  font-weight: 600;
+  font-size: 14px;
+  padding-bottom: 4px;
+  color: white
+}
+
+.chart {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 75vh;
+  font-weight: 700;
+  font-size: 12px;
+  font-family: "Roboto Mono";
+}
+
+@media (max-width: 800px) {
+  .chart {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 60vh;
+    font-weight: 700;
+    font-size: 12px;
+    font-family: "Roboto Mono";
+  }
+}
+
+.jewel {
+  font-size: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tooltip {
+  display: flex;
+  flex-direction: column;
+}
+
+.tooltip_pair {
+  display: "flex";
+  justify-content: "center";
+  font-size: 12px;
+  font-family: "Roboto Mono";
+}
+
+.tooltip_label {
+  display: "flex";
+  justify-content: "center";
+  font-family: "Roboto Mono";
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.tooltip_data_item {
+  display: "flex";
+  justify-content: "center";
+  font-family: "Roboto Mono";
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.tooltip_item {
+  display: "flex";
+  justify-content: "center";
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
