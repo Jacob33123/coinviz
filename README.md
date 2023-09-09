@@ -2,7 +2,8 @@
 Cryptocurrency Market Data Visualization
 
 # Demo
-https://github.com/Jacob33123/headversity-sorting/assets/12245405/547a20f4-65e4-4eaa-bf73-4cf35f0e1f8d
+https://github.com/Jacob33123/coinviz/assets/12245405/136148e9-c0f7-4b28-ab98-944d4fcbac15
+
 
 # Getting Started
 Install the node modules for the api:
