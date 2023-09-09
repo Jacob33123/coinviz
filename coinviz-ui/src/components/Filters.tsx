@@ -10,7 +10,6 @@ type FiltersProps = {
   setCategory: (value: React.SetStateAction<null>) => void
   setCoinListSize: (value: React.SetStateAction<number>) => void
   setNumExchanges: (value: React.SetStateAction<number>) => void
-  setSortBy: (value: React.SetStateAction<string>) => void
 }
 
 const Filters: React.FC<FiltersProps> = ({
@@ -19,7 +18,6 @@ const Filters: React.FC<FiltersProps> = ({
   setCategory,
   setCoinListSize,
   setNumExchanges,
-  setSortBy
 }) => {
   const listSizeOptions = map(range(1, 21), num => ({value: num, label: num}))
 
@@ -38,12 +36,6 @@ const Filters: React.FC<FiltersProps> = ({
   const handleChangeNumExchanges = (newValue: any, actionMeta: ActionMeta<string>) => {
     if (newValue) {
       return setNumExchanges(newValue.value)
-    }
-  }
-
-  const handleChangeSortBy = (newValue: any, actionMeta: ActionMeta<string>) => {
-    if (newValue) {
-      return setSortBy(newValue.value)
     }
   }
 
@@ -84,23 +76,6 @@ const Filters: React.FC<FiltersProps> = ({
               key='numCoinsSelect'
               options={listSizeOptions as any}
               onChange={handleChangeCoinListSize}
-              defaultValue={listSizeOptions[9] as any}
-              placeholder="# Coins"
-              className="dropdown"
-            />
-          </div>
-          <div className='dropdown_wrapper'>
-            <div className='dropdown_label'>Sort By</div>
-            <Select
-              key='coinsSortBySelect'
-              options={[
-                {value: 'market_cap', label: 'Market Cap'},
-                {value: 'current_price', label: 'Price'},
-                {value: 'total_volume', label: 'Total Volume'},
-                {value: 'price_change_percentage_24h', label: 'Price Change 24h (%)'},
-                {value: 'market_cap_change_percentage_24h', label: 'Market Cap Change 24h (%)'}
-              ] as any}
-              onChange={handleChangeSortBy}
               defaultValue={listSizeOptions[9] as any}
               placeholder="# Coins"
               className="dropdown"
