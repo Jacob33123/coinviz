@@ -15,7 +15,7 @@ type AutosizeChartProps = {
 const shouldRenderBigImg = (bubbleValue: number, maxChartValue: number | undefined, isMobile: boolean) => {
   if (maxChartValue) {
     const percent = (bubbleValue / maxChartValue) * 100
-    return isMobile ? percent > 9 : percent > 6
+    return isMobile ? percent > 9 : percent > 15
   }  
 }
 

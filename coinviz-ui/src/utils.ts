@@ -1,5 +1,5 @@
 import { map, round, toNumber } from "lodash";
-import { Category, Coin, Exchange } from "./types";
+import { Category, ChartData, Coin, Exchange } from "./types";
 
 export const getCoinChartData = (coinList: Coin[]) => coinList.map(
   coin => {
@@ -52,7 +52,17 @@ export const getExchangeNames = (exchanges: Exchange[]) => exchanges.reduce(
     return nameList
 }, {})
 
-export const getFormattedValue = (value: number) => {
+export const formatUSD = (value: number) => {
   const formattedValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(round(value, 2))
-  return `${formattedValue}`
+  return `${formattedValue} USD`
+}
+
+export const formatBTC = (value: number) => {
+  const formattedValue = new Intl.NumberFormat('en-US', {maximumFractionDigits: 8}).format(value)
+  return `${formattedValue} BTC`
+}
+
+export const getRank = (symbol: string, list: ChartData) => {
+  const index = list.findIndex(element => element.key === symbol)
+  return index + 1
 }

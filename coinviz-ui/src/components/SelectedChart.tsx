@@ -1,16 +1,18 @@
-import React from 'react'
-import { Coin, Exchange, SelectedPage } from '../types'
+import React, { useEffect, useState } from 'react'
+import { ChartData, Coin, Exchange, SelectedPage } from '../types'
 import { BallTriangle } from 'react-loader-spinner'
 import { AutosizeChart } from './AutosizeChart'
 import { ChartTooltip } from 'reaviz'
 import { 
+  formatBTC,
+  formatUSD,
   getCoinChartData,
   getCoinImages,
   getCoinNames,
   getExchangeChartData,
   getExchangeImages,
   getExchangeNames,
-  getFormattedValue
+  getRank,
 } from '../utils'
 
 type SelectedChartProps = {
@@ -26,6 +28,42 @@ export const SelectedChart: React.FC<SelectedChartProps> = ({
   exchangeList,
   coinList
 }) => {
+  const [coinChartData, setCoinChartData] = useState<ChartData>([])
+  const [coinImages, setCoinImages] = useState<{[id: string]: string}>({})
+  const [coinNames, setCoinNames] = useState<{[id: string]: string}>({})
+
+  const [exchangeChartData, setExchangeChartData] = useState<ChartData>([])
+  const [exchangeImages, setExchangeImages] = useState<{[id: string]: string}>({})
+  const [exchangeNames, setExchangeNames] = useState<{[id: string]: string}>({})
+
+  useEffect(() => {
+    setCoinChartData(
+      getCoinChartData(coinList)
+    )
+
+    setCoinImages(
+      getCoinImages(coinList)
+    )
+
+    setCoinNames(
+      getCoinNames(coinList)
+    )
+  }, [coinList])
+
+  useEffect(() => {
+    setExchangeChartData(
+      getExchangeChartData(exchangeList)
+    )
+
+    setExchangeImages(
+      getExchangeImages(exchangeList)
+    )
+
+    setExchangeNames(
+      getExchangeNames(exchangeList)
+    )
+  }, [exchangeList])
+
   if (isLoading) {
     return <BallTriangle height={150} width={150} color='#07042e' wrapperStyle={{ margin: '200px' }} />
   } else {
@@ -33,14 +71,17 @@ export const SelectedChart: React.FC<SelectedChartProps> = ({
       case 'Exchanges':
         return (
           <AutosizeChart 
-            chartData={exchangeList ? getExchangeChartData(exchangeList) : []} 
-            images={exchangeList ? getExchangeImages(exchangeList): {}}
+            chartData={exchangeChartData} 
+            images={exchangeImages}
             tooltipComponent={
               <ChartTooltip
                 content={(d: any) => (
                   <div className='tooltip'>
-                    <div className="tooltip_pair">{getExchangeNames(exchangeList)[d.x]}</div>
-                    <div className="tooltip_pair">{getFormattedValue(d.y)}</div>
+                    <div className="tooltip_pair">
+                      {`#${getRank(d.x, exchangeChartData)} `}
+                      {exchangeNames[d.x]}
+                    </div>
+                    <div className="tooltip_pair">{formatBTC(d.y)}</div>
                   </div>
                 )}
               />
@@ -50,14 +91,17 @@ export const SelectedChart: React.FC<SelectedChartProps> = ({
       default:
         return (
           <AutosizeChart 
-            chartData={coinList ? getCoinChartData(coinList) : []} 
-            images={coinList ? getCoinImages(coinList): {}}
+            chartData={coinChartData} 
+            images={coinImages}
             tooltipComponent={
               <ChartTooltip
                 content={(d: any) => (
                   <div className='tooltip'>
-                    <div className="tooltip_pair">{getCoinNames(coinList)[d.x]}</div>
-                    <div className="tooltip_pair">{getFormattedValue(d.y)}</div>
+                    <div className="tooltip_pair">
+                      {`#${getRank(d.x, coinChartData)} `}
+                      {coinNames[d.x]}
+                    </div>
+                    <div className="tooltip_pair">{formatUSD(d.y)}</div>
                   </div>
                 )}
               />

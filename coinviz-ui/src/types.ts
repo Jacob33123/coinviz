@@ -48,3 +48,15 @@ export type Exchange = {
 }
 
 export type SelectedPage = 'Cryptocurrencies' | 'Exchanges'
+
+interface ChartDataItem {
+  key: string
+  data: number
+}
+
+interface RankDataItem extends ChartDataItem {
+  rank: number
+}
+
+export type ChartData = ChartDataItem[]
+export type RankData = RankDataItem[]

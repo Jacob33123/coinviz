@@ -16,6 +16,7 @@ export const App: React.FC = () => {
   const [coinListSize, setCoinListSize] = useState(10)
   const [numExchanges, setNumExchanges] = useState(10)
   const [isLoading, setIsLoading] = useState(false)
+  const [sortBy, setSortBy] = useState<string>('market_cap')
 
   useEffect(() => {
     const fetchCoinList = async () => {
@@ -92,6 +93,7 @@ export const App: React.FC = () => {
         setCategory={setCategory}
         setCoinListSize={setCoinListSize}
         setNumExchanges={setNumExchanges}
+        setSortBy={setSortBy}
       />
       <SelectedChart 
         selectedPage={selectedPage}
